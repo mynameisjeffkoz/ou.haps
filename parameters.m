@@ -5,4 +5,5 @@ h_max = 30000;
 day = 355;
 lat = 20;
 cap = 40;
-w0 = HAPS_sizing(cap);
+m0 = HAPS_sizing(cap);
+w0 = m0 * g;
