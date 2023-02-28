@@ -1,4 +1,4 @@
-function Vv = HAPS_sinkRate(altitude, m0)
+function Vv = HAPS_sinkRate(altitude, m0,S)
 % Calculate the sink rate of the unpowered HAPS aircraft at the given
 % altitude and weight
 g = 9.80665;
@@ -7,9 +7,8 @@ CD0 = 0.02;
 e = 0.8;
 k = 1 / (pi*e*AR);
 Cl_max = 1.7;
-S = 58.8;
 rho = atmosDensity(altitude);
-V = 1.2 * HAPS_stallSpeed(altitude, m0);
+V = 1.2 * HAPS_stallSpeed(altitude, m0,S);
 q = 0.5 * rho * V^2;
 CL = m0 * g / (q * S);
 CD =  CD0 + k * CL^2;

@@ -30,14 +30,14 @@ end
 max_charge = (1+DOD)/2 * capacity;
 
 % Calculate cruise1 power requirement
-PR_cruise1 = HAPS_FlightPower("SLUF", hi, m0);
+PR_cruise1 = HAPS_FlightPower("SLUF", hi, m0,S);
 % Specific power (irradiance) for cruise1
 p_spec_cruise1 = PR_cruise1 / eff_area;
 % Begin charging when solar can support all power requirements
 t_start = FindGHI(p_spec_cruise1, day, lat, hi);
 
 % Find power requirement for max climb
-PR_climb = HAPS_FlightPower("CLIMB", hi, m0);
+PR_climb = HAPS_FlightPower("CLIMB", hi, m0,S);
 % Get specific power for max climb
 p_spec_climb = PR_climb / eff_area;
 % Find the time to switch to climb
@@ -73,14 +73,14 @@ while h < hf
     % Step forward one minute
     t = t + 1/60;
     % Track the climb of the aircraft
-    h = h + HAPS_TimedClimb(h, m0, 60);
+    h = h + HAPS_TimedClimb(h, m0, 60,S);
 end
 
 % Debugging Statement
 %fprintf("End of Climb\nBattery State: %d\nTime: %d\nAltitude: %d\n", state, t, h)
 
 % Calculate the new cruise power requirement
-PR_cruise2 = HAPS_FlightPower("SLUF",hf,m0);
+PR_cruise2 = HAPS_FlightPower("SLUF",hf,m0,S);
 
 % Until the battery is full or power runs out
 while state < max_charge & P_solar >= PR_cruise2
@@ -101,14 +101,14 @@ end
 % Debugging Statement
 %fprintf("End of Cruise 2\nBattery State: %d\nTime: %d\n\n", state, t)
 
-% Check for program failure case
-if state < max_charge
-    fprintf("Cycle failure: Battery reached only %d / %d", state, max_charge)
-end
-
 % Calculate the time at which power available is less than power draw
 t_dark = LastGHI(PR_cruise2/eff_area,day,lat,hf);
 % No calculations needed between these two times
 t = t_dark - t_start;
 
+% Check for program failure case
+if state < max_charge
+    fprintf("Cycle failure: Battery reached only %d / %d", state, max_charge)
+    t = 0;
+end
 
