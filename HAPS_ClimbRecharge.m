@@ -14,8 +14,9 @@ e_batt = 0.96;
 % Calculate HAPS weight
 m0 = HAPS_sizing(capacity,S);
 
-% Effective area of the panels, based on panel and packing efficiency
-eff_area = S * e_area * e_panel;
+% Effective area of the panels, based on panel and packing efficiency,
+% inlcuding some number of panels on the horizontal tail
+eff_area = S * e_area * e_panel * 1.25;
 
 % Correct depth of discharge if entered as whole number percentage
 if DOD > 1
