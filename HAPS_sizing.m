@@ -10,7 +10,7 @@ epsilon = 1/10^6;
 Esb = 340;
 Wpl = 50;
 % Convert wing area into english units
-S = S * m2ft^2
+S = S * m2ft^2;
 % Vmax in kts, somewhat arbitrary
 Vmax = 150;
 % Aspect Ratio = fixed 30
@@ -19,7 +19,7 @@ m0 = 0;
 Wbat = capacity * 1000 / Esb;
 guess = 1000;
 count = 0;
-while (count < 100)
+while (count < 1000)
     w = guess * kg2lbs;
     hp = 0.04 * 1000 * guess * W2hp;
     p_w = hp / w;
@@ -29,7 +29,7 @@ while (count < 100)
         * (p_w)^0.19...
         * (w_s)^-0.20...
         * Vmax^0.05...
-        * 0.9;
+        * 0.85;
     m0 = (Wpl + Wbat) / (1 - EWF);
     if (guess < m0 * (1 + epsilon) & guess > m0 * (1 - epsilon))
         break;
@@ -37,4 +37,3 @@ while (count < 100)
     guess = m0;
     count = count + 1;
 end
-

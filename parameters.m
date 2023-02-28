@@ -1,9 +1,10 @@
 g = 9.80665;
 AR = 30;
+S = 180;
 h_min = 16000;
 h_max = 30000;
 day = 355;
 lat = 20;
 cap = 40;
-m0 = HAPS_sizing(cap);
+m0 = HAPS_sizing(cap, S);
 w0 = m0 * g;

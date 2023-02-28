@@ -6,7 +6,7 @@ function t_total = HAPS_FlightCycle(h_min, h_max, capacity, DOD, S)
 day = 355;
 lat = 20;
 e_batt = 0.96;
-m0 = HAPS_sizing(capacity);
+m0 = HAPS_sizing(capacity,S);
 if DOD > 1
     DOD = DOD / 100;
 end
@@ -20,10 +20,10 @@ t_charge = HAPS_ClimbRecharge(h_min,h_max,capacity,min_charge,DOD,S)
 t_glide = HAPS_glideTime(h_max,h_min,m0,S) / 3600
 
 % Calculate the state of the battery after glide
-E_batt = max_charge - HAPS_DescentPower(h_max,h_min,40,S) / e_batt
+E_batt = max_charge - HAPS_DescentPower(h_max,h_min,capacity,S) / e_batt
 
 % Calculate the length of the dark cruise segment
-t_cruise = HAPS_CruiseEndurance(h_min,40,E_batt,75,S)
+t_cruise = HAPS_CruiseEndurance(h_min,capacity,E_batt,75,S)
 
 % Calculate the total length of time of all flight segments
 t_total = t_charge + t_glide + t_cruise

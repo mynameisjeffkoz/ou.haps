@@ -1,4 +1,4 @@
-function output = HAPS_SizingTable(c_max, c_int, c_min, DOD_min, DOD_interval, DOD_max, h_min, h_max)
+function output = HAPS_SizingTable(c_max, c_int, c_min, DOD_min, DOD_interval, DOD_max, S,h_min, h_max)
 % Generate a table of possible HAPS sizing configurations based on battery
 % capacity and depth of discharge
  index = 1;
@@ -21,7 +21,7 @@ end
          cap(index) = c;
          DOD(index) = d;
          cycle(index) = HAPS_FlightCycle(h_min,h_max,c,d);
-         w0(index) = HAPS_sizing(c);
+         w0(index) = HAPS_sizing(c,S);
          index = index + 1;
      end
  end

@@ -8,7 +8,7 @@ S = 58.8;
 e_area = 0.9;
 e_panel = 0.23;
 e_batt = 0.96;
-w0 = HAPS_sizing(capacity);
+w0 = HAPS_sizing(capacity,S);
 eff_area = S * e_area * e_panel;
 if DOD > 1
     DOD = DOD / 100;

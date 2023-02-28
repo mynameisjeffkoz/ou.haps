@@ -12,7 +12,7 @@ e_panel = 0.23;
 e_batt = 0.96;
 
 % Calculate HAPS weight
-m0 = HAPS_sizing(capacity);
+m0 = HAPS_sizing(capacity,S);
 
 % Effective area of the panels, based on panel and packing efficiency
 eff_area = S * e_area * e_panel;

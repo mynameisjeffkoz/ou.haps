@@ -1,7 +1,7 @@
 function t = HAPS_CruiseEndurance(alt, capacity, state, DOD,S)
 % Calculate the cruise endurance of the HAPS aircraft at a specified
 % altitude, and with a certain battery size
-w0 = HAPS_sizing(capacity);
+w0 = HAPS_sizing(capacity,S);
 e_batt = 0.96;
 PR = HAPS_FlightPower("SLUF", alt, w0,S);
 % Correct depth of discharge if entered as whole number percentage
