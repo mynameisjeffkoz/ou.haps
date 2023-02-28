@@ -7,7 +7,6 @@ CD0 = 0.02;
 e = 0.8;
 k = 1 / (pi*e*AR);
 Cl_max = 1.7;
-V = 1.2 * HAPS_stallSpeed(altitude, m0,S);
 PR = HAPS_SLUFPower(altitude, m0,S);
 PA = m0 * .04 * 1000;
 PE = PA - PR;
