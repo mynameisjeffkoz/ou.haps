@@ -7,7 +7,7 @@ function t = HAPS_ClimbRecharge(hi, hf, capacity, state, DOD, S)
 % Some starting parameters
 day = 355;
 lat = 20;
-e_area = 0.9;
+e_area = 1.25;
 e_panel = 0.23;
 e_batt = 0.96;
 
@@ -16,7 +16,7 @@ m0 = HAPS_sizing(capacity,S);
 
 % Effective area of the panels, based on panel and packing efficiency,
 % inlcuding some number of panels on the horizontal tail
-eff_area = S * e_area * e_panel * 1.25;
+eff_area = S * e_area * e_panel;
 
 % Correct depth of discharge if entered as whole number percentage
 if DOD > 1
