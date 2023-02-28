@@ -7,7 +7,7 @@ function t = HAPS_ClimbRecharge(hi, hf, capacity, state, DOD, S)
 % Some starting parameters
 day = 355;
 lat = 20;
-e_area = 1.25;
+e_area = 0.9;
 e_panel = 0.23;
 e_batt = 0.96;
 
@@ -20,7 +20,7 @@ eff_area = S * e_area * e_panel;
 
 % Correct depth of discharge if entered as whole number percentage
 if DOD > 1
-    DOD = DOD / 100;
+    DOD = min(DOD/100, 1);
 end
 
 % Calculate battery capacity limits as needed

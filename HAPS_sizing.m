@@ -24,12 +24,16 @@ while (count < 1000)
     hp = 0.04 * 1000 * guess * W2hp;
     p_w = hp / w;
     w_s = w / S;
+    %{
     EWF = 0 + 1.21*(w)^-0.04...
         * AR^0.14...
         * (p_w)^0.19...
         * (w_s)^-0.20...
         * Vmax^0.05...
-        * 0.85;
+        * 0.9;
+    %}
+    %EWF = 2.39 * guess^-0.18 * .95;
+    EWF = 0.88*guess^-0.05;
     m0 = (Wpl + Wbat) / (1 - EWF);
     if (guess < m0 * (1 + epsilon) & guess > m0 * (1 - epsilon))
         break;
