@@ -36,7 +36,7 @@ E_batt = max_charge - E_sunset - ...
          HAPS_DescentPower(h_max - dh,h_min,capacity,S) / e_batt;
 
 % Calculate the length of the dark cruise segment
-t_cruise = HAPS_CruiseEndurance(h_min,capacity,E_batt,DOD,S);
+t_cruise = HAPS_CruiseEndurance(h_min,capacity,E_batt,DOD,S)
 
 % Calculate the total length of time of all flight segments
 t_total = t_charge + t_sunset + t_glide + t_cruise;
@@ -51,19 +51,9 @@ if t_total < 24
     t_nextSun = ceil(t_nextSun) / 60;
     % Find the overlap between the next sunrise and the current flight
     % cycle
-    t_over = t_start + t_total - (t_nextSun + 24);
+    t_over = t_start + t_total - t_nextSun - 24;
     % If the overlap is positive
     if (t_over > 0)
-        % Update the total time to last until sunrise
-        t_total = (t_nextSun + 24) - t_start;
-        % Calculate the new cruise time
-        t_cruise = t_cruise - t_over;
-        % Calculate the battery state after the new cruise time
-        E_batt = E_batt - HAPS_CruiseForDuration(t_cruise,h_min,capacity,S);
-        % Calculate how long the aircraft can maintain flight
-        t_morning = HAPS_morningFlight(day + 1, lat, h_min, E_batt,...
-            capacity, DOD, S);
-        t_total = t_total + t_morning;
     end
 end
 

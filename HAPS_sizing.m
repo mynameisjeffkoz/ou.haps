@@ -32,7 +32,7 @@ while (count < 1000)
         * Vmax^0.05...
         * 0.9;
     %}
-    %EWF = 2.39 * guess^-0.18 * .95;
+    % EWF = 2.39 * guess^-0.18 * .95;
     EWF = 0.88*guess^-0.05;
     m0 = (Wpl + Wbat) / (1 - EWF);
     if (guess < m0 * (1 + epsilon) & guess > m0 * (1 - epsilon))

@@ -1,0 +1,5 @@
+function P = HAPS_ChargeRate(t, day, lat, alt, S)
+% Calculate the rate of power generation for the HAPS aircraft
+e_area = 1;
+e_panel = 0.23;
+P = GHI(t, day, lat, alt) * S * e_area * e_panel;

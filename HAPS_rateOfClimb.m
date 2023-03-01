@@ -8,6 +8,6 @@ e = 0.8;
 k = 1 / (pi*e*AR);
 Cl_max = 1.7;
 PR = HAPS_SLUFPower(altitude, m0,S);
-PA = m0 * .04 * 1000;
+PA = m0 * .02 * 1000;
 PE = PA - PR;
 Vv = PE /(g * m0);

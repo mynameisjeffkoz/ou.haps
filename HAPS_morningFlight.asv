@@ -1,0 +1,34 @@
+function t = HAPS_morningFlight(day, lat, alt, state, cap, DOD, S)
+% Calculate the amount of time for which the aircraft can fly until its
+% battery is exhausted, or the battery begins to recharge
+% Get the mass of the aircraft
+m0 = HAPS_sizing(cap,S);
+e_batt = 0.96;
+% Correct Degree of Discharge
+if (DOD > 1)
+    DOD = DOD / 100;
+end
+% Calculate the minimum battery capacity
+cap_min = (1 - DOD) / 2 * cap;
+% Calculate power requirement for flight
+PR = HAPS_FlightPower("SLUF", alt, m0, S);
+% Find the starting time
+t_start = solar_sunrise(day,lat);
+% Update current time to the starting time
+t= t_start;
+% Initialize the net power value
+P_net = 0;
+% While net power is less than zero
+while P_net <= 0
+    % Calculate the net power rate
+    P_net = HAPS_ChargeRate(t,day,lat,alt,S) - PR;
+    % Calculate the battery energy lost
+    state = state - P_net /1000 / 60 / e_batt;
+    % Check if the battery is below minimum capacity
+    if state <= cap_min
+        % Break out of the loop
+        break
+    end;
+    % Tick time forward
+    t = t + 1/60;
+end

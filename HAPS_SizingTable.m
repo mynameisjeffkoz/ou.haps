@@ -20,8 +20,8 @@ end
      for d=DOD_min:DOD_interval:DOD_max
          cap(index) = c;
          DOD(index) = d;
-         cycle(index) = HAPS_FlightCycle(h_min,h_max,c,d);
-         w0(index) = HAPS_sizing(c,S);
+         cycle(index) = HAPS_FlightCycle(h_min,h_max,c,d,S);
+         m0(index) = HAPS_sizing(c,S);
          index = index + 1;
      end
  end
@@ -33,4 +33,4 @@ output.Capacity = cap';
 output.DOD = DOD';
 output.Cycle = cycle';
 output.FS = cycle'./24;
-output.Weight = w0';
+output.Weight_kg = m0';

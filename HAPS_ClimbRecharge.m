@@ -7,7 +7,7 @@ function t = HAPS_ClimbRecharge(hi, hf, capacity, state, DOD, S)
 % Some starting parameters
 day = 355;
 lat = 20;
-e_area = 0.9;
+e_area = 1;
 e_panel = 0.23;
 e_batt = 0.96;
 
@@ -32,10 +32,8 @@ max_charge = (1+DOD)/2 * capacity;
 
 % Calculate cruise1 power requirement
 PR_cruise1 = HAPS_FlightPower("SLUF", hi, m0,S);
-% Specific power (irradiance) for cruise1
-p_spec_cruise1 = PR_cruise1 / eff_area;
 % Begin charging when solar can support all power requirements
-t_start = FindGHI(p_spec_cruise1, day, lat, hi);
+t_start = HAPS_startTime(hi,m0,S);
 
 % Find power requirement for max climb
 PR_climb = HAPS_FlightPower("CLIMB", hi, m0,S);
@@ -86,7 +84,7 @@ PR_cruise2 = HAPS_FlightPower("SLUF",hf,m0,S);
 % Until the battery is full or power runs out
 while state < max_charge & P_solar >= PR_cruise2
     % Calculate solar power available
-    P_solar = GHI(t, day, lat, hf) * eff_area;
+    P_solar = GHI(t + 1/60, day, lat, hf) * eff_area;
     % Calculate the net power
     P_net = P_solar - PR_cruise2;
     % Add the net energy (Power * time * battery efficiency)

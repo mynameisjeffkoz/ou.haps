@@ -7,7 +7,7 @@ e_overall = e_prop * e_motor;
 if (condition == "SLUF")
     P = HAPS_SLUFPower(alt,m0,S) / e_overall + HAPS_IdleDraw();
 elseif (condition == "CLIMB")
-    P = m0 * .04 * 1000 / e_overall + HAPS_IdleDraw();
+    P = m0 * .02 * 1000 / e_overall + HAPS_IdleDraw();
 elseif (condition == "GLIDE")
     P = HAPS_IdleDraw();
 end
