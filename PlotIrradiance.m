@@ -14,10 +14,10 @@ plot(t,Id);
 hold on
 plot(t,Idiff);
 plot(t,Ig);
-title("Solar Irradiance For J355 at Latitude 20")
+title("Solar Irradiance For J355 at Latitude 20", 'FontSize', 14)
 xlabel("Time (h)")
 ylabel ("Solar Irradiance (W/m^2)");
 legend({"Direct Normal", "Diffuse Horizontal",...
-    "Global Horizontal"});
+    "Global Horizontal"}, 'FontSize', 14);
 hold off;
     
