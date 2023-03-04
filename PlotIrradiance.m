@@ -9,15 +9,17 @@ for i = 1:length(t)
     Idiff(i) = DHI(t(i), day, lat, alt);
     Ig(i) = GHI(t(i), day, lat, alt);
 end
-hold off
-plot(t,Id);
+clf
 hold on
+plot(t,Id);
 plot(t,Idiff);
 plot(t,Ig);
 title("Solar Irradiance For J355 at Latitude 20", 'FontSize', 14)
 xlabel("Time (h)")
+xlim([0 24]);
+xticks(0:4:24);
 ylabel ("Solar Irradiance (W/m^2)");
 legend({"Direct Normal", "Diffuse Horizontal",...
-    "Global Horizontal"}, 'FontSize', 14);
+    "Global Horizontal"}, 'FontSize', 8);
 hold off;
     
