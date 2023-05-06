@@ -230,6 +230,8 @@ while i < (24 * 60 + 1)
     altitude_plot(i) = h_min;
     t = t + 1/60;
 end
+percent
+min_percent = min(battery_plot)
 %% Plotting functions
 % Convert battery from decimal to percentage
 battery_plot = battery_plot * 100;
