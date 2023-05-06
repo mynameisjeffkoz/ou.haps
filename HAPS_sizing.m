@@ -41,5 +41,5 @@ while (count < 1000)
     guess = m0;
     count = count + 1;
 end
-empty = EWF * m0
-Wbat
+empty = EWF * m0;
+Wbat;
